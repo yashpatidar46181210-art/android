@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Aisha 🎀</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        background: linear-gradient(135deg, #ffb6dc, #c7b5ff);
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        text-align: center;
+        color: white;
+    }
+
+    /* Floating Hearts */
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        color: #ffd1ec;
+        font-size: 22px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+    }
+
+    header {
+        padding: 60px 20px;
+    }
+
+    .name {
+        font-size: 50px;
+        font-weight: 700;
+        animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+        0% { text-shadow: 0 0 10px white; }
+        50% { text-shadow: 0 0 25px #ffd6ff; }
+        100% { text-shadow: 0 0 10px white; }
+    }
+
+    /* Countdown */
+    #countdown {
+        font-size: 25px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Slideshow */
+    .slideshow {
+        width: 90%;
+        max-width: 350px;
+        margin: 20px auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 25px rgba(255,255,255,0.4);
+    }
+
+    .slideshow img {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* Gallery */
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .photo img {
+        width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    /* Surprise Popup */
+    #popup {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(6px);
+    }
+
+    #popupBox {
+        background: white;
+        width: 80%;
+        max-width: 320px;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 100px auto;
+        color: black;
+        animation: pop 0.5s;
+    }
+
+    @keyframes pop {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    #closeBtn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: pink;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="https://files.catbox.moe/w6m0x2.mp3" type="audio/mp3">
+</audio>
+
+<header>
+    <div class="name">🎀 Happy Birthday Aisha 🎀</div>
+    <div id="countdown"></div>
+</header>
+
+<!-- Slideshow -->
+<div class="slideshow">
+    <img id="slideImg" src="aisha1.jpg">
+</div>
+
+<!-- Gallery -->
+<div class="gallery">
+    <div class="photo"><img src="aisha1.jpg"></div>
+    <div class="photo"><img src="aisha2.jpg"></div>
+    <div class="photo"><img src="aisha3.jpg"></div>
+    <div class="photo"><img src="aisha4.jpg"></div>
+    <div class="photo"><img src="aisha5.jpg"></div>
+    <div class="photo"><img src="aisha6.jpg"></div>
+    <div class="photo"><img src="aisha7.jpg"></div>
+    <div class="photo"><img src="aisha8.jpg"></div>
+    <div class="photo"><img src="aisha9.jpg"></div>
+    <div class="photo"><img src="aisha10.jpg"></div>
+    <div class="photo"><img src="aisha11.jpg"></div>
+    <div class="photo"><img src="aisha12.jpg"></div>
+</div>
+
+<!-- Surprise Popup -->
+<div id="popup">
+    <div id="popupBox">
+        <h2>🎉 Surprise Aisha! 🎉</h2>
+        <p>You are loved, special and truly one of a kind.  
+        May your birthday be filled with happiness, magic and blessings! 💖</p>
+        <button id="closeBtn">Close</button>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+/* Floating Hearts */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+
+/* Countdown Timer */
+const birthday = new Date("2025-12-01 00:00:00").getTime(); // Change date
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = birthday - now;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hrs = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const min = Math.floor((diff % (1000*60*60)) / (1000*60));
+
+    document.getElementById("countdown").innerHTML =
+        "⏳ Birthday in: " + days + " Days " + hrs + " Hrs " + min + " Mins";
+}, 1000);
+
+/* Slideshow */
+let index = 1;
+setInterval(() => {
+    index++;
+    if (index > 12) index = 1;
+    document.getElementById("slideImg").src = `aisha${index}.jpg`;
+}, 2500);
+
+/* Surprise Popup */
+setTimeout(() => {
+    document.getElementById("popup").style.display = "block";
+}, 4000);
+
+document.getElementById("closeBtn").onclick = () => {
+    document.getElementById("popup").style.display = "none";
+};
+</script>
+
+</body>
+</html>
